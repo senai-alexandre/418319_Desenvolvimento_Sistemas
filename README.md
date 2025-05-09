@@ -20,7 +20,7 @@ Dependencies:
 
 # EXEMPLO DE CHAMADA DE REQUISIÇÃO EM JAVASCRIPT
 
-```
+```js
  const dados = {
       usuario: "seuUsuario",
       senha: "suaSenha"
@@ -49,7 +49,7 @@ Dependencies:
 ```
 # EXEMPLO DE SERVIÇO EM JAVA SPRING BOOT
 
-```
+```java
 import com.example.apirest.dto.AutenticacaoDTO;
 import com.example.apirest.service.AutenticacaoService;
 import org.springframework.http.ResponseEntity;
@@ -72,4 +72,4 @@ public class AutenticacaoController {
 
 
 # ESTRUTURA DO PROJETO BACK-END JAVA SPRING BOOT
-<img src="img.png" >
+![Texto Alternativo](img.png)
