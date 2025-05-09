@@ -1,7 +1,6 @@
-# rest
-
-https://start.spring.io/
-
+# COMO CRIAR O PROJETO BACK-END
+```
+SITE: https://start.spring.io/
 
 Project: Maven
 
@@ -14,49 +13,63 @@ Group: com.exemplo
 Artifact: apirest
 
 Dependencies:
-
-Spring Web
-
-Spring Boot DevTools (opcional)
-
+  -> Spring Web
+  -> Spring Boot DevTools
+```
 
 
-#Uso em HTML
+# EXEMPLO DE CHAMADA DE REQUISIÇÃO EM JAVASCRIPT
 
-const fetchPromise = fetch("http://localhost:8080/api/mensagem?texto=Ola", {
-  method: "GET",
-  mode: "cors",
-  headers: {
-    "Content-Type": "text/html;charset=UTF-8", 
-    "Access-Control-Allow-Origin": "*"   
-  }
-});
+```
+ const dados = {
+      usuario: "seuUsuario",
+      senha: "suaSenha"
+    };
 
-fetchPromise.then((response) => {
-  console.log(response.status);
-});
+    fetch("http://localhost:8080/autenticar/usuario", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dados)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Erro na requisição: ${response.status}`);
+        }
+        return response.json(); // ou .text() dependendo do retorno da API
+      })
+      .then(data => {
+        console.log("Resposta da API:", data);
+      })
+      .catch(error => {
+        console.error("Erro ao fazer a requisição:", error);
+      });
 
-#USO EM JAVA
-package com.example.apirest.controllers;
+```
+# EXEMPLO DE SERVIÇO EM JAVA SPRING BOOT
 
+```
+import com.example.apirest.dto.AutenticacaoDTO;
+import com.example.apirest.service.AutenticacaoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/autenticar")
 @CrossOrigin(origins = "*")
-public class ExemploController {
-
-    @GetMapping("/mensagem")
-    public String mensagem(@RequestParam String texto) {
-        return "Mensagem recebida: " + texto;
-    }
-    
-    @GetMapping("/mensagem2")
-    public String mensagem2() {
-        return "OLA SOU UMA MENSAGEM";
+public class AutenticacaoController {
+   
+    @PostMapping("/usuario")
+    public ResponseEntity<?> usuario(@RequestBody AutenticacaoDTO autenticacaoDTO) {
+        AutenticacaoService service = new AutenticacaoService();
+        Object resposta = service.autenticar(autenticacaoDTO);
+        return ResponseEntity.ok(resposta);
     }
 }
 
+```
 
-# Estrutura do Projeto
+
+# ESTRUTURA DO PROJETO BACK-END JAVA SPRING BOOT
 <img src="img.png" >
