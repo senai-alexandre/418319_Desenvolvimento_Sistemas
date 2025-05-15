@@ -105,6 +105,27 @@ PRIMEIROS PASSO
 
   4 - CRIE AS PASTAS REPOSITORY, E DENTRO DESSA PASTA CRIE AINDA AS PASTAS CUSTOM, IMPL
 
+  5 - DENTRO DA PASTA RESOURCES NO ARQUIVO APPLICATION.PROPERTIES ADICIONE AS LINHAS ABAIXO:
+
+      # Configurações de conexão com o banco de dados
+      #spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=BANCO_DADOS
+      #spring.datasource.username=username
+      #spring.datasource.password=password
+      #spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+      # Habilitar o uso do JPA
+
+      spring.datasource.url=jdbc:sqlserver://USUARIO;databaseName=BANCO_DADOS;integratedSecurity=true;encrypt=true;trustServerCertificate=true
+      spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+      spring.jpa.hibernate.ddl-auto=none
+      spring.jpa.show-sql=true
+      spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+
+      java.library.path=path/to/dll
+
+      spring.aot.enabled=false
+
+
 ```
 
 USO
