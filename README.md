@@ -130,37 +130,46 @@ PRIMEIROS PASSO
 
 USO
 
+
+```JAVA
+
+public interface UsuarioRepositoryCustom {
+     public boolean inserirUsuario(UsuarioDTO usuarioDTO);
+}
+
+```
+
 ```JAVA
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long>, UsuarioCustom{
+public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long>, UsuarioRepositoryCustom{
     
 }
-```
 
-```JAVA
-public interface UsuarioCustom {
-     public boolean inserirUsuario(UsuarioDTO usuarioDTO);
-}
 ```
 
 
+
 ```JAVA
-@Override
-@Transactional
-public boolean inserirUsuario(UsuarioDTO usuarioDTO){
-      String sql = "INSERT INTO TB_USUARIO(TX_NOME, TX_SENHA) VALUES ";
-      sql += "(:nome, :senha);";
-      
-      
-    Query query = entityManager.createNativeQuery(sql);
-    query.setParameter("nome",usuarioDTO.getNome());
-    query.setParameter("senha",usuarioDTO.getSenha());
+@Repository
+public class UsuarioRepositoryImpl implements UsuarioRepositoryCustom {
+
+    @PersistenceContext
+    private EntityManager entityManager;
     
-    query.executeUpdate();
-              
-    return true;
-      
+    @Override
+    @Transactional
+    public boolean inserirUsuario(UsuarioDTO usuarioDTO){
+         String sql = "INSERT INTO TB_USUARIO(TX_NOME, TX_SENHA) VALUES ";
+         sql += "(:nome, :senha);";
+                 
+        Query query = entityManager.createNativeQuery(sql);
+        query.setParameter("nome",usuarioDTO.getNome());
+        query.setParameter("senha",usuarioDTO.getSenha());
+        query.executeUpdate();
+                  
+        return true;       
+    }
 }
 
 ```
