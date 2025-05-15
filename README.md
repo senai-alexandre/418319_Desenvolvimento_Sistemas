@@ -74,7 +74,7 @@ public class AutenticacaoController {
 ```
 
 
-# BANCO DE DADOS
+# BANCO DE DADOS CHAMADA EM JAVA
 
 PRIMEIROS PASSO
 ```
@@ -141,5 +141,15 @@ public boolean inserirUsuario(UsuarioDTO usuarioDTO){
     return true;
       
 }
+
+```
+
+# BANCO DE DADOS TABELA
+```SQL
+CREATE TABLE TB_USUARIO (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    TX_NOME VARCHAR(100),
+    TX_SENHA VARCHAR(100)
+);
 
 ```
