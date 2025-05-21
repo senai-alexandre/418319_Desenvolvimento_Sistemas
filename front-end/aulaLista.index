@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='css.css'>
+
+</head>
+
+<script>
+  function abrirNovaAba() {
+   
+    fetch("http://localhost:8080/servico/nome", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => response.json())
+
+    .then(retornoServico => {
+    var html = '';
+
+    retornoServico.forEach(x => {
+      html += `
+        <div class="item">
+          <label>${x.titulo}</label>
+          <label>${x.descricao}</label>
+        </div>
+      `;
+    });
+
+    const container = document.createElement('div');
+    container.innerHTML = html;
+
+    document.body.appendChild(container);
+  })
+  .catch(error => {
+    console.error("Erro ao fazer a requisição:", error);
+  });
+
+  }
+
+
+</script>
+
+<body>
+
+  <div class="quadrado">
+    <div class="click" onclick="abrirNovaAba()">
+
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>
