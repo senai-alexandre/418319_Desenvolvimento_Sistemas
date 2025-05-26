@@ -110,7 +110,8 @@ public class AutenticacaoController {
 ```
 
 
-# BANCO DE DADOS CHAMADA EM JAVA
+
+# CASO DER ERRO AO SE CONECTAR NO BANCO DE DADOS
 
 PRIMEIROS PASSO
 ```
@@ -119,7 +120,17 @@ PRIMEIROS PASSO
   2 - COM O BOTÃO DIRETO DO MAUSE, CLIQUE EM CIMA DO PROJETO PRINCIPAL NO NETBEANS, VA EM PROPRIEDADES > RUN > VM OPTIONS > E ADICIONE ESSA LINHA
         -Djava.library.path=C:\\drivers\\sqljdbc
 
-  3 - ADICIONE ESSES PROJETOS DENTRO DE dependencies DO ARQUIVO POM.XML
+  3 - NAVEGE ATE A PASTA C:\Windows\SysWOW64\SQLServerManager16.msc
+
+  4 - Ao abrir o programa va em "Configuração de Rede do SQL Server" > "Protocoloes para MSSQLSERVER" >  e HABILITE O TCP/IP
+
+```
+
+
+
+
+# BANCO DE DADOS CHAMADA EM JAVA
+  1 - ADICIONE ESSES PROJETOS DENTRO DE dependencies DO ARQUIVO POM.XML
 
               <dependency>
                     <groupId>jakarta.persistence</groupId>
@@ -139,9 +150,9 @@ PRIMEIROS PASSO
                     <artifactId>spring-boot-starter-data-jpa</artifactId>
                 </dependency>
 
-  4 - CRIE AS PASTAS REPOSITORY, E DENTRO DESSA PASTA CRIE AINDA AS PASTAS CUSTOM, IMPL
+  2 - CRIE AS PASTAS REPOSITORY, E DENTRO DESSA PASTA CRIE AINDA AS PASTAS CUSTOM, IMPL
 
-  5 - DENTRO DA PASTA RESOURCES NO ARQUIVO APPLICATION.PROPERTIES ADICIONE AS LINHAS ABAIXO:
+  3 - DENTRO DA PASTA RESOURCES NO ARQUIVO APPLICATION.PROPERTIES ADICIONE AS LINHAS ABAIXO:
 
       # Configurações de conexão com o banco de dados
       #spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=BANCO_DADOS
