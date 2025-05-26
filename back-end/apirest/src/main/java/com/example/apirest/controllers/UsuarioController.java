@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class UsuarioController {
        
+    @Autowired
+    private UsuarioService usuarioService;
+
     @GetMapping("/cadastrar")
     public Boolean cadastrar() {
-        return  new UsuarioService().inserirUsuario();
+        return  usuarioService.inserirUsuario();
     }
 }
